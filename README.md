@@ -5,6 +5,7 @@ A simple JS to view thumb...
 ```html
 <script src='./othumb.js'></script>  
 ```
+It will automatically attach events to your \<a\> elements~
 **Simple as you think!**
 
 ### Add more formats.
