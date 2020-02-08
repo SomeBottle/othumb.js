@@ -5,8 +5,9 @@ A simple JS to view thumb...
 ```html
 <script src='./othumb.js'></script>  
 ```
-It will automatically attach events to your \<a\> elements~
-**Simple as you think!**
+It will automatically attach events to your \<a\> elements~   
+**Simple as you think!**  
+PS: It is suitable for onedrive sharing pages~  
 
 ### Add more formats.
 ```javasript
