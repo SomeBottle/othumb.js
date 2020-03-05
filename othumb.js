@@ -4,16 +4,18 @@ var othumb = {
     flag: false,
 	css:'.othumb{position:absolute;background:#FAFAFA;box-shadow:0 0 5px #888;border-radius:8px;transition:1s ease;overflow:hidden;opacity:0}',
     s: function() {
-        var x = document.getElementsByTagName('a');
-        this.a();
+		this.a();
+		var o = this,
+			box = document.getElementById('othumb');
+			box.addEventListener('transitionend',o.boxv.bind(o)),
+			x = document.getElementsByTagName('a');
         for (var i in x) {
             if (x[i] instanceof Element) {
-                var o = this;
+                
                 x[i].addEventListener('mouseover', function(e) {
                     if (o.filetype.indexOf(this.href.split('.').pop()) !== -1) {
                         o.flag = true;
-                        var el = this;
-						var box = document.getElementById('othumb'),
+                        var el = this,
                             img = document.getElementById('othumbimg');
 						box.style.display='block';
                         setTimeout(function() {
@@ -31,18 +33,18 @@ var othumb = {
                 x[i].addEventListener('mouseout', function(e) {
                     var box = document.getElementById('othumb');
                     box.style.opacity = 0;
-					box.addEventListener('transitionend',othumb.boxv,false);
                     o.flag = false;
                 });
             }
         }
     },
 	boxv:function(){
-		console.log('box hidden');
-		var img = document.getElementById('othumbimg'),
-		box = document.getElementById('othumb');
-		box.style.display='none';
-		box.removeEventListener('transitionend',othumb.boxv);
+		if(!this.flag){
+		    console.log('box hidden');
+		    var img = document.getElementById('othumbimg'),
+		    box = document.getElementById('othumb');
+		    box.style.display='none';
+		}
 	},
     a: function() {
         var e = document.createElement('div');
