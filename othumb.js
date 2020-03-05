@@ -13,11 +13,12 @@ var othumb = {
                     if (o.filetype.indexOf(this.href.split('.').pop()) !== -1) {
                         o.flag = true;
                         var el = this;
+						var box = document.getElementById('othumb'),
+                            img = document.getElementById('othumbimg');
+						box.style.display='block';
                         setTimeout(function() {
                             if (o.flag) {
-                                var box = document.getElementById('othumb'),
-                                    img = document.getElementById('othumbimg'),
-                                    bx = e.clientX + 20,
+                                var bx = e.clientX + 20,
                                     by = e.clientY + 20;
                                 box.style.left = bx + 'px';
                                 box.style.top = by + 'px';
@@ -30,11 +31,20 @@ var othumb = {
                 x[i].addEventListener('mouseout', function(e) {
                     var box = document.getElementById('othumb');
                     box.style.opacity = 0;
+					box.addEventListener('transitionend',othumb.boxv,false);
                     o.flag = false;
                 });
             }
         }
     },
+	boxv:function(){
+		console.log('box hidden');
+		var img = document.getElementById('othumbimg'),
+		box = document.getElementById('othumb');
+		img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
+		box.style.display='none';
+		box.removeEventListener('transitionend',othumb.boxv);
+	},
     a: function() {
         var e = document.createElement('div');
         var i = document.createElement('img');
