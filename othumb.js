@@ -41,7 +41,6 @@ var othumb = {
 		console.log('box hidden');
 		var img = document.getElementById('othumbimg'),
 		box = document.getElementById('othumb');
-		img.src = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7';
 		box.style.display='none';
 		box.removeEventListener('transitionend',othumb.boxv);
 	},
