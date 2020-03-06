@@ -20,8 +20,8 @@ var othumb = {
 						box.style.display='block';
                         setTimeout(function() {
                             if (o.flag) {
-                                var bx = e.clientX + 20,
-                                    by = e.clientY + 20;
+                                var bx = e.clientX + window.scrollX + 20,
+                                    by = e.clientY + window.scrollY + 20;
                                 box.style.left = bx + 'px';
                                 box.style.top = by + 'px';
                                 box.style.opacity = 1;
