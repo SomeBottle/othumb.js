@@ -3,6 +3,12 @@ var othumb = {
     filetype: ['png', 'jpeg', 'jpg', 'gif', 'webp'],
     flag: false,
 	css:'.othumb{position:absolute;background:#FAFAFA;box-shadow:0 0 5px #888;border-radius:8px;transition:1s ease;overflow:hidden;opacity:0}',
+	parser:function(hf){
+		var suffix=hf.split('.').pop();
+		suffix=suffix.split('?');
+		suffix.length>1 ? suffix.pop() : suffix=suffix;
+		return suffix.join('');
+	},
     s: function() {
 		this.a();
 		var o = this,
@@ -13,7 +19,7 @@ var othumb = {
             if (x[i] instanceof Element) {
                 
                 x[i].addEventListener('mouseover', function(e) {
-					var suffix=(this.href.split('.').pop()).split('?')[0];/*取出后缀（忽略?请求）*/
+					var suffix=o.parser(this.href);/*取出后缀（忽略?请求）*/
                     if (o.filetype.indexOf(suffix) !== -1) {
                         o.flag = true;
                         var el = this,
@@ -22,11 +28,13 @@ var othumb = {
                         setTimeout(function() {
                             if (o.flag) {
                                 var bx = e.clientX + window.scrollX + 20,
-                                    by = e.clientY + window.scrollY + 20;
+                                    by = e.clientY + window.scrollY + 20,
+									rq = el.href.split('?');
                                 box.style.left = bx + 'px';
                                 box.style.top = by + 'px';
                                 box.style.opacity = 1;
-                                img.src = el.href.split('?')[0] + '?thumbnail=medium';
+								rq.length>1 ? rq.pop() : rq=rq;
+                                img.src = rq.join('') + '?thumbnail=medium';
                             }
                         }, 1500);
                     }
