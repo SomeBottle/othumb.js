@@ -1,6 +1,6 @@
 /*simple thumbviewer -SomeBottle*/
 var othumb = {
-    filetype: ['png', 'jpeg', 'jpg', 'gif'],
+    filetype: ['png', 'jpeg', 'jpg', 'gif', 'webp'],
     flag: false,
 	css:'.othumb{position:absolute;background:#FAFAFA;box-shadow:0 0 5px #888;border-radius:8px;transition:1s ease;overflow:hidden;opacity:0}',
     s: function() {
@@ -13,7 +13,8 @@ var othumb = {
             if (x[i] instanceof Element) {
                 
                 x[i].addEventListener('mouseover', function(e) {
-                    if (o.filetype.indexOf(this.href.split('.').pop()) !== -1) {
+					var suffix=(this.href.split('.').pop()).split('?')[0];/*取出后缀（忽略?请求）*/
+                    if (o.filetype.indexOf(suffix) !== -1) {
                         o.flag = true;
                         var el = this,
                             img = document.getElementById('othumbimg');
@@ -25,7 +26,7 @@ var othumb = {
                                 box.style.left = bx + 'px';
                                 box.style.top = by + 'px';
                                 box.style.opacity = 1;
-                                img.src = el.href + '?thumbnail=medium';
+                                img.src = el.href.split('?')[0] + '?thumbnail=medium';
                             }
                         }, 1500);
                     }
